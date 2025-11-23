@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil Saya</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Reset & dasar */
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+body { 
+    background: linear-gradient(135deg, #ffe6f0, #e0f7fa, #fef9e7); 
+    color:#444; 
+    transition:0.5s; 
+}
+header { 
+    background: rgba(255,255,255,0.95); 
+    padding:20px 50px; 
+    display:flex; 
+    justify-content:space-between; 
+    align-items:center; 
+    position:sticky; 
+    top:0; 
+    box-shadow:0 4px 20px rgba(0,0,0,0.05); 
+    z-index:10; 
+}
+header h1 { font-weight:700; color:#ff6f91; }
+header ul { list-style:none; display:flex; gap:20px; }
+header ul li a { text-decoration:none; color:#444; font-weight:500; transition:0.3s; }
+header ul li a:hover { color:#ff9a8b; transform: scale(1.1); }
+
+/* Hero */
+.hero { display:flex; flex-direction: column; justify-content: center; align-items: center; text-align:center; min-height: 100vh; position:relative; overflow:hidden; padding: 0 20px; }
+.profile-pic { width:180px; height:180px; border-radius:50%; border:6px solid #fff; margin-bottom:20px; transition: transform 0.5s; }
+.profile-pic:hover { transform: rotate(10deg) scale(1.15); }
+.hero h2 { font-size:2.8em; color:#ff6f91; margin-bottom:10px; animation: fadeInDown 1s ease-in-out; }
+.hero h3 { font-size:1.2em; color:#555; margin-bottom:15px; }
+.hero p { font-size:1.2em; margin-bottom:20px; animation: fadeInUp 1s ease-in-out; }
+.btn { background: linear-gradient(135deg, #ffb6b9, #fae3d9); color:#fff; padding:12px 30px; border-radius:30px; text-decoration:none; font-weight:600; transition:0.3s; display:inline-block; box-shadow:0 4px 15px rgba(0,0,0,0.05);}
+.btn:hover { transform: scale(1.05); }
+
+/* Sections */
+section { padding:80px 50px; text-align:center; }
+section h2 { font-size:2em; margin-bottom:20px; color:#ff6f91; position:relative; display:inline-block; }
+section h2::after { content:"✨"; margin-left:10px; animation: sparkle 1.5s infinite; }
+
+/* Skills */
+.skills .skill-container { display:flex; flex-direction:column; gap:20px; max-width:500px; margin:auto; }
+.skill { text-align:left; }
+.skill h3 { margin-bottom:5px; }
+.bar { background:#f0f7fa; border-radius:30px; overflow:hidden; height:20px; }
+.progress { height:20px; border-radius:30px; width:0; transition: width 1.5s ease-in-out; }
+.progress.html { background:#ff6f91; }
+.progress.js { background:#fae3d9; }
+.progress.design { background:#cce0f5; }
+
+/* Software Section */
+.software {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 30px;
+}
+.soft-card {
+    background: #fff;
+    padding: 20px 15px;
+    width: 130px;
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    color: #ff6f91;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+.soft-card img {
+    width: 50px;
+    margin-bottom: 12px;
+}
+.soft-card span {
+    text-align: center;
+    font-size: 0.95em;
+}
+.soft-card:hover {
+    background: linear-gradient(135deg, #ffdde1, #fef3e7);
+    color: #fff;
+    transform: scale(1.08);
+}
+
+/* Contact */
+.contact a { color:#ff6f91; text-decoration:none; transition:0.3s; }
+.contact a:hover { text-decoration:underline; transform: scale(1.05); }
+
+/* Footer */
+footer { background: rgba(255,255,255,0.95); padding:20px; text-align:center; color:#555; font-size:0.9em; }
+
+/* Floating Emojis */
+.emoji { position:absolute; font-size:2em; animation: float 5s infinite ease-in-out; }
+
+/* Form WA */
+.contact-form { max-width:500px; margin:30px auto; background: rgba(255,255,255,0.9); padding:30px; border-radius:15px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+.contact-form h3 { margin-bottom:20px; color:#ff6f91; }
+.contact-form input, .contact-form textarea { width:100%; padding:12px; margin-bottom:15px; border-radius:10px; border:1px solid #ccc; font-size:1em; }
+.btn-send { background:#ff6f91; color:#fff; padding:12px 25px; border-radius:30px; border:none; font-weight:600; cursor:pointer; transition:0.3s; }
+.btn-send:hover { background:#ff3f70; transform: scale(1.05); }
+
+/* Table About */
+#about table { width:100%; max-width:600px; margin:auto; border-collapse:separate; border-spacing:0 10px; font-size:1em; }
+#about td { padding:15px; border-radius:15px; transition:0.3s; }
+#about td:first-child { background:#ffe6f0; color:#ff6f91; font-weight:bold; }
+#about td:last-child { background:#e0f7fa; color:#444; }
+#about td:hover { transform:scale(1.02); }
+
+/* Animations */
+@keyframes fadeInDown { from {opacity:0; transform:translateY(-20px);} to {opacity:1; transform:translateY(0);} }
+@keyframes fadeInUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+@keyframes sparkle { 0%,100% {opacity:1;} 50% {opacity:0.3;} }
+@keyframes float { 0% {transform: translateY(0);} 50% {transform: translateY(-20px);} 100% {transform: translateY(0);} }
+</style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <h1>Profil Saya 🌟</h1>
+        <ul>
+            <li><a href="#about">Tentang Saya</a></li>
+            <li><a href="#skills">Keahlian</a></li>
+            <li><a href="#software">Software</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <img src="ade.jpeg" alt="Foto Profil" class="profile-pic">
+    <h2>Halo, Saya Ade Glarita Ollavia Simorangkir</h2>
+    <h3>can you call me Ollav</h3>
+    <p>Saya developer & designer yang menyukai kreativitas, teknologi, hal lucu, dan tentunya kucing ✨</p>
+    <a href="#contact" class="btn">Hubungi Saya 📩</a>
+
+    <div class="emoji" style="top:20px; left:10%;">🚀</div>
+    <div class="emoji" style="top:50px; left:80%;">💻</div>
+    <div class="emoji" style="top:150px; left:30%;">🎨</div>
+    <div class="emoji" style="top:250px; left:70%;">🌟</div>
+    <div class="emoji" style="top:60px; right:40%;">🍳</div>
+    <div class="emoji" style="top:40px; left:20%;">🛍️</div>
+</section>
+
+<section id="about">
+    <h2>Tentang Saya</h2>
+    <div style="overflow-x:auto; margin-top:20px;">
+        <table>
+            <tr>
+                <td>Nama</td>
+                <td>Ade Glarita Ollavia Simorangkir</td>
+            </tr>
+            <tr>
+                <td>Panggilan</td>
+                <td>Ollav cantik 😎</td>
+            </tr>
+            <tr>
+                <td>Hobi</td>
+                <td>Coding 💻, Design 🎨, Ngopi ☕</td>
+            </tr>
+            <tr>
+                <td>Suka</td>
+                <td>Kucing 🐱, Masak 🍳, Belanja 🛍️, Dandan 👸💄💅</td>
+            </tr>
+            <tr>
+                <td>Kepribadian</td>
+                <td>Kreatif ✨, Pekerja Keras 💪, Penuh Semangat 🌈</td>
+            </tr>
+            <tr>
+                <td>Motto</td>
+                <td>"Belajar setiap hari, berkarya setiap saat!" 🚀</td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<section id="skills" class="skills">
+    <h2>Keahlian</h2>
+    <div class="skill-container">
+        <div class="skill">
+            <h3>HTML & CSS 💻</h3>
+            <div class="bar"><div class="progress html" style="--width:90%;"></div></div>
+        </div>
+        <div class="skill">
+            <h3>JavaScript ⚡</h3>
+            <div class="bar"><div class="progress js" style="--width:75%;"></div></div>
+        </div>
+        <div class="skill">
+            <h3>Design & Figma 🎨</h3>
+            <div class="bar"><div class="progress design" style="--width:90%;"></div></div>
+        </div>
+    </div>
+</section>
+
+<section id="software">
+    <h2>Software yang Sering Digunakan</h2>
+    <div class="software">
+        <div class="soft-card"><img src="vscode.jpg" alt="VSCode"><span>VSCode</span></div>
+        <div class="soft-card"><img src="xampp1.jpg" alt="XAMPP"><span>XAMPP</span></div>
+        <div class="soft-card"><img src="github1.jpg" alt="GitHub"><span>GitHub</span></div>
+        <div class="soft-card"><img src="adobe1.jpg" alt="Adobe"><span>Adobe</span></div>
+        <div class="soft-card"><img src="canva.jpg" alt="Canva"><span>Canva</span></div>
+        <div class="soft-card"><img src="office1.jpg" alt="Office"><span>Office</span></div>
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <h2>Kontak Saya</h2>
+    <p>Email: <a href="mailto:adeglaritasimorangkir92@gmail.com">adeglaritasimorangkir92@gmail.com 📧</a></p>
+    <p>HP/WA: <a href="tel:+6283831021023">+62 83831021023 📱</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/adeglarita-ollavia/">linkedin.com/in/adeglarita-ollavia 🔗</a></p>
+    <p>Instagram: <a href="https://www.instagram.com/adeglarita_s">@adeglarita_s 📸</a></p>
+
+    <div class="contact-form">
+        <h3>Kirim Pesan 📩</h3>
+        <form id="waForm">
+            <input type="text" id="name" placeholder="Nama Anda" required>
+            <input type="email" id="email" placeholder="Email Anda" required>
+            <textarea id="message" placeholder="Tulis pesanmu di sini..." rows="5" required></textarea>
+            <button type="submit" class="btn-send">Kirim Pesan ke WA</button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Ade Glarita Ollavia. All Rights Reserved 🌟</p>
+</footer>
+
+<script>
+// Skill bar animation
+window.addEventListener('scroll', () => {
+    const skills = document.querySelectorAll('.progress');
+    const skillSection = document.querySelector('.skills');
+    const rect = skillSection.getBoundingClientRect().top;
+    const screenHeight = window.innerHeight;
+    if(rect < screenHeight - 100){
+        skills.forEach(skill => {
+            skill.style.width = skill.style.getPropertyValue('--width');
+        });
+    }
+});
+
+// Form WA
+const waForm = document.getElementById('waForm');
+waForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const waNumber = '+6283831021023';
+    const text = `Halo Ade Glarita Ollavia!\n\nNama: ${name}\nEmail: ${email}\nPesan: ${message}`;
+    const url = `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+});
+</script>
+
+</body>
+</html>
